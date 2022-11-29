@@ -8,12 +8,14 @@ export class Transaction extends Common{
 			console.log('You must enter a valid number')}else{this._amount = amount}
 	}
 
-	testFn(){
-	return this.httpCall({
+	async testFn(){
+		let response;
+	await this.httpCall({
 		hostname:'jsonplaceholder.typicode.com',
 		path:'/posts',
 		method:'GET'
-	})
+	}).then( res => response = res);
+		return response;
 	}
 }
 
