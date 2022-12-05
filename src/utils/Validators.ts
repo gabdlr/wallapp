@@ -1,5 +1,5 @@
 import { Validator } from "../models/Validators/Validator";
-export const Validate = (value: string,validators: Validator[]): string => {
+export const validate = (value: string,validators: Validator[]): string => {
     let errors: Set<string> = new Set();
     let errored: boolean = false;
     validators.forEach( (validator:Validator) => {
