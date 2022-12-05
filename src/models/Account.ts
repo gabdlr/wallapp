@@ -1,6 +1,6 @@
 import { Transaction } from "./Transaction";
 import { Common } from "./Common";
-import Validator from "./../utils/Validators"
+
 export class Account {
 
     private _id: string = Common.generateId();
@@ -32,11 +32,10 @@ export class Account {
     }
 
     set name(value: string) {
-        let auxName: string = Validator.stringLength(value,'name',4,255);
-        if(auxName.length){
-            value = auxName;
-            this._name = value;
+        if(!value){
+            value = 'New Account'
         }
+        this._name = value;   
     }
 
 }
