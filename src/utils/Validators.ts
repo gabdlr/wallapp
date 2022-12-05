@@ -53,12 +53,12 @@ export const noBlankSpaces = (errorMessage?: string) => {
 
 export const minValue = (minValue: number, errorMessage?: string) => {
     const minValueFn = (value: string) => {
-        if(!isNumber().validationFn(value)){
-            validator.errorMessage = isNumber().errorMessage;
-        }
         value = value.trim();
         let isValid: boolean = true;
-        if(isNaN(Number(value)) || Number(value) < minValue){
+        if(!isNumber().validationFn(value)){
+            validator.errorMessage = isNumber().errorMessage;
+	isValid = false;
+        }else if(Number(value) < minValue){
             isValid = false;
         }
         return isValid;
@@ -69,14 +69,14 @@ export const minValue = (minValue: number, errorMessage?: string) => {
 
 export const maxValue = (maxValue: number, errorMessage?: string) => {
     const maxValueFn = (value: string) => {
-        if(!isNumber().validationFn(value)){
-            validator.errorMessage = isNumber().errorMessage;
-        }
         value = value.trim();
         let isValid: boolean = true;
-        if(isNaN(Number(value)) || Number(value) > maxValue){
+        if(!isNumber().validationFn(value)){
+            validator.errorMessage = isNumber().errorMessage;
+	isValid = false;
+        }else if(Number(value) > maxValue){
             isValid = false;
-        }console.log
+        }
         return isValid;
     }
     const validator = new Validator(errorMessage ?? `The number input is too big\nThe max. value allowed is ${maxValue}`, maxValueFn)
